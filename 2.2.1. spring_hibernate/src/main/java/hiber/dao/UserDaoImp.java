@@ -7,6 +7,7 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
@@ -23,12 +24,18 @@ public class UserDaoImp implements UserDao {
 
     @Override
     public User findByCar(Car car) {
-        Query query = sessionFactory.getCurrentSession()
-                .createQuery(
-                        "FROM User u where u.car.model=:model and u.car.series = :series")
-                .setParameter("model", car.getModel())
-                .setParameter("series", car.getSeries());
-        return (User) query.getSingleResult();
+        try{
+            Query query = sessionFactory.getCurrentSession()
+                    .createQuery(
+                            "FROM User u where u.car.model=:model and u.car.series = :series")
+                    .setParameter("model", car.getModel())
+                    .setParameter("series", car.getSeries());
+            return (User) query.getSingleResult();
+        } catch (NoResultException e){
+            return null;
+        }
+
+
     }
 
     @Override
