@@ -22,18 +22,6 @@ public class UserDaoImp implements UserDao {
     }
 
     @Override
-    public void addCar(User user, Car car) {
-        user.setCar(car);
-        sessionFactory.getCurrentSession().save(car);
-    }
-
-    @Override
-    public User findByFirstName(String firstName) {
-        TypedQuery<User> query = sessionFactory.getCurrentSession().createQuery("from User where firstName = :username").setParameter("username", firstName);
-        return query.getSingleResult();
-    }
-
-    @Override
     public User findByCar(Car car) {
         Query query = sessionFactory.getCurrentSession()
                 .createQuery(

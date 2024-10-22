@@ -21,19 +21,7 @@ public class UserServiceImp implements UserService {
         userDao.add(user);
     }
 
-    @Transactional
-    @Override
-    public void addCar(User user, Car car) {
-        userDao.addCar(user, car);
-    }
-
-    @Transactional
-    @Override
-    public User findByFirstName(String firstName) {
-        return userDao.findByFirstName(firstName);
-    }
-
-    @Transactional
+    @Transactional(readOnly = true)
     @Override
     public User findByCar(Car car) {
         return userDao.findByCar(car);
