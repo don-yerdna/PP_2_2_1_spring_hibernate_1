@@ -2,6 +2,7 @@ package hiber.dao;
 
 import hiber.model.Car;
 import hiber.model.User;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,14 +30,13 @@ public class UserDaoImp implements UserDao {
 
     @Override
     public User findByCar(Car car) {
-        try{
-            Query query = sessionFactory.getCurrentSession()
-                    .createQuery(
-                            "FROM User u where u.car.model=:model and u.car.series = :series")
+        try(Session session = sessionFactory.getCurrentSession()){
+            Query query = session
+                    .createQuery("FROM User u where u.car.model=:model and u.car.series = :series")
                     .setParameter("model", car.getModel())
                     .setParameter("series", car.getSeries());
             return (User) query.getSingleResult();
-        } catch (Exception e){
+        } catch (NullPointerException e){
             return null;
         }
     }
