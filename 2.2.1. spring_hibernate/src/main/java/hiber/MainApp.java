@@ -15,20 +15,40 @@ public class MainApp {
 
         UserService userService = context.getBean(UserService.class);
 
-        User user1 = new User("User1","Lastname1","user1@mail.ru");
-        User user2 = new User("User2","Lastname2","user2@mail.ru");
-        User user3 = new User("User3","Lastname3","user3@mail.ru");
-        User user4 = new User("User4","Lastname4","user4@mail.ru");
+        Car car1 = context.getBean("car",Car.class);
+        car1.setModel("model1");
+        car1.setSeries(1);
+        Car car2 = context.getBean("car",Car.class);
+        car2.setModel("model2");
+        car2.setSeries(2);
+        Car car3 = context.getBean("car",Car.class);
+        car3.setModel("model3");
+        car3.setSeries(3);
 
-        Car car1 = new Car("model1",1);
-        Car car2 = new Car("model2",2);
-        Car car3 = new Car("model3",3);
-        Car car4 = new Car("model4",4);
+
+        User user1 = context.getBean("user",User.class);
+        user1.setFirstName("User1");
+        user1.setLastName("Lastname1");
+        user1.setEmail("user1@mail.ru");
+
+        User user2 = context.getBean("user",User.class);
+        user2.setFirstName("User2");
+        user2.setLastName("Lastname2");
+        user2.setEmail("user2@mail.ru");
+
+        User user3 = context.getBean("user",User.class);
+        user3.setFirstName("User3");
+        user3.setLastName("Lastname3");
+        user3.setEmail("user3@mail.ru");
+
+        User user4 = context.getBean("user",User.class);
+        user4.setFirstName("User4");
+        user4.setLastName("Lastname4");
+        user4.setEmail("user4@mail.ru");
 
         user1.setCar(car2);
         user2.setCar(car3);
         user3.setCar(car1);
-//        user3.setCar(car4);
 
         userService.add(user1);
         userService.add(user2);

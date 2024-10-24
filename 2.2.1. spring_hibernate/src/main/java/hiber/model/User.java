@@ -1,10 +1,14 @@
 package hiber.model;
 
 import org.hibernate.annotations.Cascade;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.util.Objects;
-
+@Component
+@Scope("prototype")
 @Entity
 @Table(name = "users")
 public class User {
@@ -25,16 +29,6 @@ public class User {
     @OneToOne(mappedBy = "user")
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     private Car car;
-
-
-    public User() {
-    }
-
-    public User(String firstName, String lastName, String email) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-    }
 
     public Long getId() {
         return id;
@@ -72,6 +66,7 @@ public class User {
         return car;
     }
 
+    @Autowired
     public void setCar(Car car) {
         this.car = car;
         car.setUser(this);

@@ -54,17 +54,4 @@ public class AppConfig {
         return transactionManager;
     }
 
-//    @Bean(name = "user")
-//    @Scope("prototype")
-//    public User getUser(){
-//        User user = new User();
-//        user.setCar(getCar());
-//        return user;
-//    }
-//
-//    @Bean(name = "car")
-//    @Scope("prototype")
-//    public Car getCar(){
-//        return new Car();
-//    }
 }
