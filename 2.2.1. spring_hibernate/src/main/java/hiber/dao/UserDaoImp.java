@@ -36,7 +36,7 @@ public class UserDaoImp implements UserDao {
                     .setParameter("model", car.getModel())
                     .setParameter("series", car.getSeries());
             return (User) query.getSingleResult();
-        } catch (NullPointerException e){
+        } catch (NullPointerException | NoResultException e){
             return null;
         }
     }
