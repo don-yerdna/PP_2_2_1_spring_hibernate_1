@@ -14,8 +14,13 @@ import java.util.List;
 @Repository
 public class UserDaoImp implements UserDao {
 
-    @Autowired
+
     private SessionFactory sessionFactory;
+
+    @Autowired
+    public void setSessionFactory(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
 
     @Override
     public void add(User user) {
@@ -31,11 +36,9 @@ public class UserDaoImp implements UserDao {
                     .setParameter("model", car.getModel())
                     .setParameter("series", car.getSeries());
             return (User) query.getSingleResult();
-        } catch (NoResultException e){
+        } catch (Exception e){
             return null;
         }
-
-
     }
 
     @Override

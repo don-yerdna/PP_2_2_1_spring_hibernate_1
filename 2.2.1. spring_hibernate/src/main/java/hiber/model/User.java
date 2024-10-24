@@ -1,14 +1,12 @@
 package hiber.model;
 
+import lombok.RequiredArgsConstructor;
 import org.hibernate.annotations.Cascade;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.util.Objects;
-@Component
-@Scope("prototype")
+@RequiredArgsConstructor
 @Entity
 @Table(name = "users")
 public class User {
@@ -66,7 +64,6 @@ public class User {
         return car;
     }
 
-    @Autowired
     public void setCar(Car car) {
         this.car = car;
         car.setUser(this);

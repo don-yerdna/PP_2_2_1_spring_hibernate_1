@@ -15,33 +15,34 @@ public class MainApp {
 
         UserService userService = context.getBean(UserService.class);
 
-        Car car1 = context.getBean("car",Car.class);
+        Car car1 = new Car();
         car1.setModel("model1");
         car1.setSeries(1);
-        Car car2 = context.getBean("car",Car.class);
+        Car car2 = new Car();
         car2.setModel("model2");
         car2.setSeries(2);
-        Car car3 = context.getBean("car",Car.class);
+        Car car3 = new Car();
         car3.setModel("model3");
         car3.setSeries(3);
+        Car car4 = new Car();
+        car4.setModel("model4");
+        car4.setSeries(4);
 
 
-        User user1 = context.getBean("user",User.class);
+
+        User user1 = new User();
         user1.setFirstName("User1");
         user1.setLastName("Lastname1");
         user1.setEmail("user1@mail.ru");
-
-        User user2 = context.getBean("user",User.class);
+        User user2 = new User();
         user2.setFirstName("User2");
         user2.setLastName("Lastname2");
         user2.setEmail("user2@mail.ru");
-
-        User user3 = context.getBean("user",User.class);
+        User user3 = new User();
         user3.setFirstName("User3");
         user3.setLastName("Lastname3");
         user3.setEmail("user3@mail.ru");
-
-        User user4 = context.getBean("user",User.class);
+        User user4 = new User();
         user4.setFirstName("User4");
         user4.setLastName("Lastname4");
         user4.setEmail("user4@mail.ru");
@@ -60,7 +61,7 @@ public class MainApp {
             System.out.println(user.toString());
         }
 
-        User userCar = userService.findByCar(car1);
+        User userCar = userService.findByCar(car4);
         System.out.println(userCar!=null?userCar.toString():"Not found!");
 
         context.close();
